@@ -10,7 +10,6 @@ export class BooksResolver {
 
   @Mutation(() => Book)
   createBook(@Args('createBookInput') createBookInput: CreateBookInput) {
-    console.log("post")
     return this.booksService.create(createBookInput);
   }
 

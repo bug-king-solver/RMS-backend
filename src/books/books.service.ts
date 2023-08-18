@@ -24,10 +24,13 @@ export class BooksService {
   }
 
   update(id: number, updateBookInput: UpdateBookInput) {
-    return `This action updates a #${id} book`;
+    return this.prisma.book.update({
+      where: {id},
+      data: updateBookInput,
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} book`;
+    return this.prisma.book.delete({where: {id}});
   }
 }
