@@ -5,32 +5,32 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class BooksService {
-  constructor(private prisma: PrismaService){}
+  constructor(private prisma: PrismaService) {}
 
   create(createBookInput: CreateBookInput) {
-    return this.prisma.book.create({data: createBookInput})
+    return this.prisma.book.create({ data: createBookInput });
   }
 
   findAll() {
-    return this.prisma.book.findMany({where: {published: true}});
+    return this.prisma.book.findMany({ where: { published: true } });
   }
 
   findDrafts() {
-    return this.prisma.book.findMany({where: {published: false}});
+    return this.prisma.book.findMany({ where: { published: false } });
   }
 
   findOne(id: number) {
-    return this.prisma.book.findUnique({where: {id}});
+    return this.prisma.book.findUnique({ where: { id } });
   }
 
   update(id: number, updateBookInput: UpdateBookInput) {
     return this.prisma.book.update({
-      where: {id},
+      where: { id },
       data: updateBookInput,
-    })
+    });
   }
 
   remove(id: number) {
-    return this.prisma.book.delete({where: {id}});
+    return this.prisma.book.delete({ where: { id } });
   }
 }
