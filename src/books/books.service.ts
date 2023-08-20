@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateBookInput } from './dto/create-book.input';
-import { UpdateBookInput } from './dto/update-book.input';
+import { CreateBookInput } from './dto';
+import { UpdateBookInput } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PrismaSelectService } from 'src/prisma/prisma-select.service';
 import { GraphQLResolveInfo } from 'graphql';
@@ -14,7 +14,7 @@ export class BooksService {
     private prismaSelectService: PrismaSelectService,
   ) {}
 
-  public async create(createBookInput: CreateBookInput) {
+  public async create(createBookInput: CreateBookInput): Promise<Book> {
     try {
       const data: Prisma.BookCreateInput = {
         ...createBookInput,
@@ -25,18 +25,18 @@ export class BooksService {
     }
   }
 
-  public async findAll(info?: GraphQLResolveInfo) {
+  public async findAll(info?: GraphQLResolveInfo): Promise<Book[]> {
     const select = this.prismaSelectService.getValue(info);
     return await this.prisma.book.findMany({...select});
   }
 
-  public async findDrafts() {
+  public async findDrafts(): Promise<Book[]> {
     return await this.prisma.book.findMany({
       where: { published: false },
     });
   }
 
-  public async findOne(id: number, info?: GraphQLResolveInfo) {
+  public async findOne(id: number, info?: GraphQLResolveInfo): Promise<Book> {
     const select = this.prismaSelectService.getValue(info);
     return await this.prisma.book.findUnique({
       ...select,
@@ -45,7 +45,7 @@ export class BooksService {
     });
   }
 
-  public async update(id: number, updateBookInput: UpdateBookInput) {
+  public async update(id: number, updateBookInput: UpdateBookInput): Promise<Book> {
     try {
       return await this.prisma.book.update({
         where: { id },

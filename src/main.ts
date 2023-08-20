@@ -1,20 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { Logger } from '@nestjs/common';
+import { setupSwagger } from './common/configs/setup-swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const port: number = Number(process.env.SERVER_PORT);
+  const siteUrl = process.env.SITE_URL;
+
   app.enableCors();
-  const config = new DocumentBuilder()
-    .setTitle('RMS')
-    .setDescription('The RMS API description')
-    .setVersion('0.1')
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
-
-  await app.listen(3001);
+  setupSwagger(app);
+  await app.listen(port, () => {
+    Logger.log(`Server is running at ${siteUrl}`)
+  });
 }
 bootstrap();

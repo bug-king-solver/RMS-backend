@@ -8,8 +8,8 @@ import {
   Patch,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
-import { CreateBookInput } from './dto/create-book.input';
-import { UpdateBookInput } from './dto/update-book.input';
+import { CreateBookInput } from './dto';
+import { UpdateBookInput } from './dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Book } from './entities/book.entity';
 
