@@ -1,21 +1,28 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 @InputType()
 export class CreateBookInput {
-  @Field()
+  @Field(() => String)
+  @IsString()
+  @IsNotEmpty()
   @ApiProperty()
   title: string;
 
-  @Field({ nullable: true })
+  @Field(() => String)
+  @IsString()
+  @IsNotEmpty()
   @ApiProperty()
   description?: string;
 
-  @Field()
+  @Field(() => String)
+  @IsString()
+  @IsNotEmpty()
   @ApiProperty()
   body: string;
 
-  @Field({ defaultValue: false })
+  @Field(() => Boolean, { defaultValue: false })
   @ApiProperty()
-  published?: boolean;
+  published: boolean;
 }

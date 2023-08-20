@@ -20,37 +20,37 @@ export class BooksController {
 
   @Post()
   @ApiCreatedResponse({ type: Book })
-  create(@Body() createBookInput: CreateBookInput) {
-    return this.booksService.create(createBookInput);
+  public async create(@Body() createBookInput: CreateBookInput) {
+    return await this.booksService.create(createBookInput);
   }
 
   @Get()
   @ApiOkResponse({ type: Book, isArray: true })
-  findAll() {
-    return this.booksService.findAll();
+  public async findAll() {
+    return await this.booksService.findAll();
   }
 
   @Get('drafts')
   @ApiOkResponse({ type: Book, isArray: true })
-  findDrafts() {
-    return this.booksService.findDrafts();
+  public async findDrafts() {
+    return await this.booksService.findDrafts();
   }
 
   @Get(':id')
   @ApiOkResponse({ type: Book })
-  findOne(@Param('id') id: string) {
-    return this.booksService.findOne(+id);
+  public async findOne(@Param('id') id: string) {
+    return await this.booksService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: Book })
-  update(@Param('id') id: string, @Body() updateBookInput: UpdateBookInput) {
-    return this.booksService.update(+id, updateBookInput);
+  public async update(@Param('id') id: string, @Body() updateBookInput: UpdateBookInput) {
+    return await this.booksService.update(+id, updateBookInput);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: Book })
-  remove(@Param('id') id: string) {
-    return this.booksService.remove(+id);
+  public async remove(@Param('id') id: string) {
+    return await this.booksService.remove(+id);
   }
 }
