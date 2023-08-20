@@ -12,7 +12,7 @@ async function bootstrap() {
   app.enableCors();
   setupSwagger(app);
   await app.listen(port, () => {
-    Logger.log(`Server is running at ${siteUrl}`)
+    Logger.log(`Server is running at ${siteUrl}graphql`)
   });
 }
 bootstrap();
