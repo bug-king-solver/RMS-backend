@@ -27,7 +27,9 @@ export class BooksService {
 
   public async findAll(info?: GraphQLResolveInfo): Promise<Book[]> {
     const select = this.prismaSelectService.getValue(info);
-    return await this.prisma.book.findMany({...select});
+    const books = await this.prisma.book.findMany({...select});
+    books.sort((a, b) => a.id - b.id);
+    return books;
   }
 
   public async findDrafts(): Promise<Book[]> {
