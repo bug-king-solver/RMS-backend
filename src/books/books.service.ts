@@ -16,10 +16,7 @@ export class BooksService {
 
   public async create(createBookInput: CreateBookInput): Promise<Book> {
     try {
-      const data: Prisma.BookCreateInput = {
-        ...createBookInput,
-      }
-      return this.prisma.book.create({ data });
+      return this.prisma.book.create({ data: createBookInput });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

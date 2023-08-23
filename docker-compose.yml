@@ -1,18 +1,49 @@
-# docker-compose.yml
+version: '3.7'
 
-version: '3.8'
 services:
 
-  postgres:
-    image: postgres:13.5
-    restart: always
+  db:
+
+    image: postgres:12-alpine
+
+    networks:
+
+      - postgres
+
     environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=mypassword
+
+      POSTGRES_PASSWORD: postgres
+
+      POSTGRES_USER: postgres
+
+      POSTGRES_DB: nestjs-app
+
     volumes:
-      - postgres:/var/lib/postgresql/data
+
+      - ./pgdata:/var/lib/postgresql/data
+
     ports:
+
       - '5432:5432'
 
-volumes:
+  server:
+
+    image: nestjs-docker-build
+
+    depends_on:
+
+      - db
+
+    networks:
+
+      - postgres
+
+    ports:
+
+      - '3000:3000'
+
+networks:
+
   postgres:
+
+    driver: bridge
