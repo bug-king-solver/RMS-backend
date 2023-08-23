@@ -17,7 +17,13 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migrate:dev": "prisma migrate dev --name ",
+    "migrate:dev:create": "prisma migrate dev --create-only",
+    "migrate:deploy": "npx prisma migrate deploy --preview-feature",
+    "prisma": "prisma",
+    "prisma:generate": "prisma generate",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/server": "^4.9.1",

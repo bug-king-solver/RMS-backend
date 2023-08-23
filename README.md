@@ -32,8 +32,6 @@
 $ yarn install
 ```
 
-## Running the app
-
 ```bash
 # development
 $ yarn run start
@@ -45,17 +43,16 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
+## Docker File
+
+Get started by running
 
 ```bash
-# unit tests
-$ yarn run test
 
-# e2e tests
-$ yarn run test:e2e
+$ docker build -f Dockerfile -t nestjs-docker-build .
 
-# test coverage
-$ yarn run test:cov
+$ docker-compose up
+
 ```
 
 ## Support

@@ -14,8 +14,6 @@ RUN yarn prisma:generate
 
 RUN yarn build
 
-
-
 # stage 2
 
 FROM node:18-alpine
@@ -34,5 +32,4 @@ COPY .env .
 
 EXPOSE 3000
 
-
-CMD node dist/main.js
+CMD node dist/src/main.js
