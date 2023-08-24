@@ -22,8 +22,7 @@
     "migrate:dev:create": "prisma migrate dev --create-only",
     "migrate:deploy": "npx prisma migrate deploy --preview-feature",
     "prisma": "prisma",
-    "prisma:generate": "prisma generate",
-    "prepare": "husky install"
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@apollo/server": "^4.9.1",
