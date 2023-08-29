@@ -4,7 +4,6 @@ import { UpdateBookInput } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PrismaSelectService } from 'src/prisma/prisma-select.service';
 import { GraphQLResolveInfo } from 'graphql';
-import { Prisma } from '@prisma/client';
 import { Book } from './entities/book.entity';
 
 @Injectable()
