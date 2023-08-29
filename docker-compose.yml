@@ -6,22 +6,22 @@ services:
       dockerfile: Dockerfile
     container_name: app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - db
     environment:
-      DATABASE_URL: "postgres://postgres:postgres@db:5432/nestjs-app"
+      DATABASE_URL: 'postgres://postgres:postgres@db:5432/postgres'
     networks:
       - mynetwork
   db:
     image: postgres:13
     container_name: postgresql_db
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nestjs-app
+      POSTGRES_DB: postgres
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
